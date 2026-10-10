@@ -1,1 +1,1104 @@
-Benc.AI Website
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Benc.AI - The Foundational Financial Infrastructure for the AI Agent Era</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter and Playfair Display / Instrument Serif -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Newsreader', 'Georgia', 'serif'],
+            display: ['Instrument Serif', 'Newsreader', 'serif'],
+          },
+          colors: {
+            benc: {
+              beige: '#f5f2eb',
+              beigedark: '#ece7dc',
+              cardbg: '#eae5d8',
+              gold: '#cbb387',
+              dark: '#111111',
+              charcoal: '#1d1d1f',
+              muted: '#71717a'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #111111;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #fafafa;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #d4d4d8;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #a1a1aa;
+    }
+
+    /* Ticker animation */
+    @keyframes ticker {
+      0% { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-50%, 0, 0); }
+    }
+    .animate-marquee {
+      display: inline-flex;
+      white-space: nowrap;
+      animation: ticker 35s linear infinite;
+    }
+    .animate-marquee:hover {
+      animation-play-state: paused;
+    }
+
+    /* Pulse animation for node dots */
+    @keyframes subtlePulse {
+      0%, 100% { opacity: 0.8; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.05); }
+    }
+    .subtle-pulse {
+      animation: subtlePulse 3s ease-in-out infinite;
+    }
+
+    /* Globe canvas smooth rendering */
+    #globeCanvas, #mapCanvas {
+      filter: contrast(105%);
+      image-rendering: auto;
+    }
+
+    /* Clean input focus shadow */
+    .benc-search-shadow {
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
+      transition: all 0.25s ease;
+    }
+    .benc-search-shadow:focus-within {
+      box-shadow: 0 10px 30px -4px rgba(0, 0, 0, 0.08), 0 0 0 2px #111111;
+    }
+
+    /* Glass pill */
+    .glass-pill {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-neutral-900 selection:text-white">
+
+  <!-- Top Promo Ticker Bar -->
+  <aside aria-label="Announcement" class="w-full bg-[#0a0a0a] text-xs text-neutral-300 py-1.5 px-4 overflow-hidden border-b border-neutral-800 relative z-50">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="overflow-hidden whitespace-nowrap w-full flex items-center justify-center">
+        <div class="animate-marquee items-center gap-6 text-[11.5px] font-medium tracking-wide">
+          <span class="inline-flex items-center gap-1.5 text-amber-300 font-semibold">
+            ✨ Intro-AI Flash
+          </span>
+          <span class="text-neutral-500">•</span>
+          <span class="text-neutral-300">DeepSeek-R1-Flash</span>
+          <span class="text-neutral-500">•</span>
+          <span class="text-neutral-300">GLM-4.5-Flash</span>
+          <span class="text-neutral-500">•</span>
+          <span class="text-neutral-300">Qwen2.5-Coder-32B</span>
+          <span class="text-neutral-500">•</span>
+          <span class="text-neutral-300">MiniCPM-o-2.6</span>
+          <span class="text-neutral-500">•</span>
+          <span class="inline-flex items-center text-amber-400 font-medium px-2 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/30">
+            Limited Time Discount
+          </span>
+
+          <!-- Duplicate for seamless scroll loop -->
+          <span class="text-neutral-600 mx-4">|</span>
+          <span class="inline-flex items-center gap-1.5 text-amber-300 font-semibold">
+            ✨ Intro-AI Flash
+          </span>
+          <span class="text-neutral-500">•</span>
+          <span class="text-neutral-300">DeepSeek-R1-Flash</span>
+          <span class="text-neutral-500">•</span>
+          <span class="text-neutral-300">GLM-4.5-Flash</span>
+          <span class="text-neutral-500">•</span>
+          <span class="text-neutral-300">Qwen2.5-Coder-32B</span>
+          <span class="text-neutral-500">•</span>
+          <span class="text-neutral-300">MiniCPM-o-2.6</span>
+          <span class="text-neutral-500">•</span>
+          <span class="inline-flex items-center text-amber-400 font-medium px-2 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/30">
+            Limited Time Discount
+          </span>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Navigation Header -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-neutral-100 transition-all duration-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      
+      <!-- Brand Logo Left -->
+      <a href="#" class="flex items-center gap-2 group focus:outline-none">
+        <svg class="w-8 h-8 text-neutral-900 transition-transform duration-300 group-hover:scale-105" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Stylized Benc Butterfly / Infinity geometry -->
+          <path d="M50 50 C38 30 18 24 16 38 C14 50 28 58 50 50 Z" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M50 50 C62 30 82 24 84 38 C86 50 72 58 50 50 Z" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M50 50 C38 70 18 76 16 62 C14 50 28 42 50 50 Z" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M50 50 C62 70 82 76 84 62 C86 50 72 42 50 50 Z" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="font-serif text-2xl tracking-tight text-neutral-900 font-semibold select-none hidden sm:inline-block">
+          Benc<span class="font-sans font-bold text-xl text-neutral-900">.AI</span>
+        </span>
+      </a>
+
+      <!-- Center Navigation Links -->
+      <nav class="hidden md:flex items-center space-x-1 lg:space-x-3 text-[13.5px] font-medium text-neutral-700">
+        <!-- Dropdown 1 -->
+        <div class="relative group py-2">
+          <button class="flex items-center gap-1 px-2.5 py-1.5 rounded-lg hover:text-neutral-900 hover:bg-neutral-50 transition">
+            LLM Services
+            <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-neutral-400 group-hover:rotate-180 transition-transform duration-200"></i>
+          </button>
+          <div class="absolute top-full left-0 hidden group-hover:block w-52 p-2 bg-white rounded-xl shadow-xl border border-neutral-100 mt-0.5">
+            <a href="#services" class="block px-3 py-2 text-xs rounded-lg text-neutral-700 hover:bg-neutral-50 hover:text-black">Intro-AI Flash Engine</a>
+            <a href="#services" class="block px-3 py-2 text-xs rounded-lg text-neutral-700 hover:bg-neutral-50 hover:text-black">DeepSeek Enterprise Cluster</a>
+            <a href="#services" class="block px-3 py-2 text-xs rounded-lg text-neutral-700 hover:bg-neutral-50 hover:text-black">Private Routing Gateway</a>
+          </div>
+        </div>
+
+        <!-- Dropdown 2 -->
+        <div class="relative group py-2">
+          <button class="flex items-center gap-1 px-2.5 py-1.5 rounded-lg hover:text-neutral-900 hover:bg-neutral-50 transition">
+            Protocol
+            <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-neutral-400 group-hover:rotate-180 transition-transform duration-200"></i>
+          </button>
+          <div class="absolute top-full left-0 hidden group-hover:block w-48 p-2 bg-white rounded-xl shadow-xl border border-neutral-100 mt-0.5">
+            <a href="#protocol" class="block px-3 py-2 text-xs rounded-lg text-neutral-700 hover:bg-neutral-50 hover:text-black">Agent ID Standards</a>
+            <a href="#protocol" class="block px-3 py-2 text-xs rounded-lg text-neutral-700 hover:bg-neutral-50 hover:text-black">Cryptographic Proofs</a>
+            <a href="#protocol" class="block px-3 py-2 text-xs rounded-lg text-neutral-700 hover:bg-neutral-50 hover:text-black">Settlement Layer</a>
+          </div>
+        </div>
+
+        <a href="#skills" class="px-2.5 py-1.5 rounded-lg hover:text-neutral-900 hover:bg-neutral-50 transition">Skills</a>
+        <a href="#clis" class="px-2.5 py-1.5 rounded-lg hover:text-neutral-900 hover:bg-neutral-50 transition">Clis.ai</a>
+        <a href="#dbcode" class="px-2.5 py-1.5 rounded-lg hover:text-neutral-900 hover:bg-neutral-50 transition">Dbcode</a>
+
+        <!-- Dropdown 3 -->
+        <div class="relative group py-2">
+          <button class="flex items-center gap-1 px-2.5 py-1.5 rounded-lg hover:text-neutral-900 hover:bg-neutral-50 transition">
+            Developers
+            <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-neutral-400 group-hover:rotate-180 transition-transform duration-200"></i>
+          </button>
+          <div class="absolute top-full left-0 hidden group-hover:block w-48 p-2 bg-white rounded-xl shadow-xl border border-neutral-100 mt-0.5">
+            <a href="#docs" class="block px-3 py-2 text-xs rounded-lg text-neutral-700 hover:bg-neutral-50 hover:text-black">API Documentation</a>
+            <a href="#docs" class="block px-3 py-2 text-xs rounded-lg text-neutral-700 hover:bg-neutral-50 hover:text-black">SDK & Toolkits</a>
+            <a href="#docs" class="block px-3 py-2 text-xs rounded-lg text-neutral-700 hover:bg-neutral-50 hover:text-black">Agent Contract Specs</a>
+          </div>
+        </div>
+
+        <!-- Dropdown 4 -->
+        <div class="relative group py-2">
+          <button class="flex items-center gap-1 px-2.5 py-1.5 rounded-lg hover:text-neutral-900 hover:bg-neutral-50 transition">
+            Community
+            <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-neutral-400 group-hover:rotate-180 transition-transform duration-200"></i>
+          </button>
+          <div class="absolute top-full right-0 hidden group-hover:block w-44 p-2 bg-white rounded-xl shadow-xl border border-neutral-100 mt-0.5">
+            <a href="#discord" class="block px-3 py-2 text-xs rounded-lg text-neutral-700 hover:bg-neutral-50 hover:text-black">Discord Guild</a>
+            <a href="#github" class="block px-3 py-2 text-xs rounded-lg text-neutral-700 hover:bg-neutral-50 hover:text-black">GitHub Organization</a>
+            <a href="#governance" class="block px-3 py-2 text-xs rounded-lg text-neutral-700 hover:bg-neutral-50 hover:text-black">Agent Forum</a>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Right Controls -->
+      <div class="flex items-center gap-3">
+        <!-- App icon / portal link -->
+        <button onclick="toggleInfoModal('Agent Ecosystem Suite')" title="Apps & Ecosystem" class="p-2 text-neutral-600 hover:text-neutral-900 rounded-lg hover:bg-neutral-100 transition">
+          <i data-lucide="layout-grid" class="w-4 h-4"></i>
+        </button>
+
+        <!-- Language Selector -->
+        <div class="relative">
+          <button id="langButton" class="flex items-center gap-1 text-xs font-medium text-neutral-700 hover:text-neutral-900 px-2 py-1.5 rounded-lg hover:bg-neutral-100 transition">
+            <span>EN</span>
+            <i data-lucide="chevron-down" class="w-3 h-3 text-neutral-400"></i>
+          </button>
+        </div>
+
+        <!-- Try Out Button -->
+        <button onclick="openTryOutModal()" class="bg-black hover:bg-neutral-800 text-white text-xs font-semibold px-4 py-2 rounded-full transition shadow-sm hover:shadow active:scale-95 duration-150">
+          Try Out
+        </button>
+
+        <!-- Mobile Menu Hamburger -->
+        <button id="mobileMenuBtn" class="md:hidden p-2 text-neutral-700 hover:text-neutral-900 rounded-lg hover:bg-neutral-100">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Slideout Navigation -->
+    <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-neutral-200 px-4 pt-2 pb-6 space-y-2">
+      <a href="#services" class="block px-3 py-2 rounded-lg text-sm font-medium text-neutral-800 hover:bg-neutral-50">LLM Services</a>
+      <a href="#protocol" class="block px-3 py-2 rounded-lg text-sm font-medium text-neutral-800 hover:bg-neutral-50">Protocol</a>
+      <a href="#skills" class="block px-3 py-2 rounded-lg text-sm font-medium text-neutral-800 hover:bg-neutral-50">Skills</a>
+      <a href="#clis" class="block px-3 py-2 rounded-lg text-sm font-medium text-neutral-800 hover:bg-neutral-50">Clis.ai</a>
+      <a href="#dbcode" class="block px-3 py-2 rounded-lg text-sm font-medium text-neutral-800 hover:bg-neutral-50">Dbcode</a>
+      <a href="#docs" class="block px-3 py-2 rounded-lg text-sm font-medium text-neutral-800 hover:bg-neutral-50">Developers</a>
+      <a href="#community" class="block px-3 py-2 rounded-lg text-sm font-medium text-neutral-800 hover:bg-neutral-50">Community</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="pt-12 sm:pt-16 pb-16 px-4 sm:px-6 max-w-5xl mx-auto flex flex-col items-center text-center">
+    
+    <!-- Top Pill Announcement Badge -->
+    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-neutral-200/90 bg-gradient-to-r from-neutral-50 via-amber-50/40 to-neutral-50 text-[11px] sm:text-xs text-neutral-700 shadow-sm hover:border-neutral-300 transition cursor-pointer mb-8 group">
+      <span class="text-sm">🌐</span>
+      <span class="font-normal text-neutral-700">Pioneer of Top crypto price intelligence in Europe</span>
+      <span class="font-semibold text-rose-500 bg-rose-50 px-1.5 py-0.5 rounded text-[10px] tracking-tight">[2026 Hot project]</span>
+      <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-neutral-400 group-hover:translate-x-0.5 transition-transform"></i>
+    </div>
+
+    <!-- Centered Brand Logo & Typography -->
+    <div class="flex items-center justify-center gap-3 sm:gap-4 mb-8">
+      <svg class="w-14 h-14 sm:w-16 sm:h-16 text-neutral-900" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M50 50 C38 30 18 24 16 38 C14 50 28 58 50 50 Z" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M50 50 C62 30 82 24 84 38 C86 50 72 58 50 50 Z" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M50 50 C38 70 18 76 16 62 C14 50 28 42 50 50 Z" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M50 50 C62 70 82 76 84 62 C86 50 72 42 50 50 Z" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <h1 class="font-serif text-5xl sm:text-6xl tracking-tight text-neutral-900 font-normal">
+        Benc<span class="font-sans font-bold text-4xl sm:text-5xl tracking-normal text-neutral-900">.AI</span>
+      </h1>
+    </div>
+
+    <!-- Search / Interaction Box -->
+    <div class="w-full max-w-2xl relative mb-12">
+      <form id="heroSearchForm" onsubmit="handleSearch(event)" class="relative w-full">
+        <input 
+          type="text" 
+          id="heroSearchInput"
+          placeholder="What do you want to know?"
+          class="w-full bg-white border border-neutral-200/90 rounded-full py-4 pl-7 pr-16 text-sm sm:text-base text-neutral-800 placeholder-neutral-400 benc-search-shadow focus:outline-none transition-all"
+        />
+        <button 
+          type="submit" 
+          class="absolute right-2.5 top-1/2 -translate-y-1/2 w-10 h-10 bg-neutral-100 hover:bg-neutral-900 text-neutral-600 hover:text-white rounded-full flex items-center justify-center transition-all duration-200"
+          title="Search or Query Agents"
+        >
+          <i data-lucide="arrow-up" class="w-4 h-4"></i>
+        </button>
+      </form>
+
+      <!-- Quick query tags -->
+      <div class="flex flex-wrap items-center justify-center gap-2 mt-3 text-xs text-neutral-500">
+        <span class="text-neutral-400">Popular:</span>
+        <button onclick="setQuery('Cross-chain autonomous settlement for agents')" class="hover:text-black hover:underline underline-offset-2">Autonomous settlement</button>
+        <span class="text-neutral-300">•</span>
+        <button onclick="setQuery('DeepSeek-R1 gas optimization benchmarks')" class="hover:text-black hover:underline underline-offset-2">DeepSeek gas benchmarks</button>
+        <span class="text-neutral-300">•</span>
+        <button onclick="setQuery('Agent Identity standard RFC-402')" class="hover:text-black hover:underline underline-offset-2">RFC-402 Agent ID</button>
+      </div>
+    </div>
+
+    <!-- Foundational Mission Card -->
+    <div class="inline-flex items-center gap-3 px-5 py-3 rounded-2xl bg-neutral-100/80 border border-neutral-200/70 text-xs sm:text-sm text-neutral-700 shadow-sm max-w-xl mx-auto">
+      <div class="w-7 h-7 rounded-xl bg-white flex items-center justify-center shadow-xs text-neutral-800 shrink-0">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="9"/>
+          <path d="M12 7v5l3 3"/>
+        </svg>
+      </div>
+      <p class="font-medium text-neutral-800 text-left">
+        To become the foundational financial infrastructure for the AI Agent era.
+      </p>
+    </div>
+
+  </section>
+
+  <!-- Beige Card Section: 01 / Agent id -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="bg-[#f5f2eb] border border-[#ebe5d8] rounded-3xl p-8 sm:p-12 lg:p-16 shadow-[0_2px_24px_rgba(0,0,0,0.03)]">
+      
+      <!-- Section Tag & Heading -->
+      <div class="mb-14 max-w-2xl">
+        <div class="font-serif text-sm italic text-neutral-500 tracking-wider mb-2">
+          01 / Agent id
+        </div>
+        <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl text-neutral-900 tracking-tight font-normal leading-tight">
+          Accelerating the<br>Advent of AGI
+        </h2>
+      </div>
+
+      <!-- Three Card Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        
+        <!-- Card 1 -->
+        <div class="bg-[#eeeae0]/60 hover:bg-[#eeeae0] transition-colors duration-300 rounded-2xl p-6 flex flex-col justify-between border border-[#e4ded0]">
+          <div>
+            <!-- Stylized Geometric Icon Box -->
+            <div class="w-full h-36 bg-[#e6dfcf] rounded-xl flex items-center justify-center mb-6">
+              <svg class="w-12 h-12 text-neutral-800" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8">
+                <!-- Circular atom / identity node geometry -->
+                <circle cx="32" cy="32" r="10"/>
+                <ellipse cx="32" cy="32" rx="24" ry="9" transform="rotate(0 32 32)"/>
+                <ellipse cx="32" cy="32" rx="24" ry="9" transform="rotate(60 32 32)"/>
+                <ellipse cx="32" cy="32" rx="24" ry="9" transform="rotate(120 32 32)"/>
+                <circle cx="32" cy="32" r="2.5" fill="currentColor"/>
+              </svg>
+            </div>
+            
+            <h3 class="font-serif text-xl sm:text-2xl text-neutral-900 font-medium mb-3">
+              Independent Economic Identity for Agents
+            </h3>
+            
+            <p class="text-xs sm:text-[13px] text-neutral-600 leading-relaxed">
+              Self-overlooking, and autonomously generating contracts and rewarding Agent-to-Agent transactions seamlessly.
+            </p>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-[#e2dbcd] flex items-center justify-between text-xs text-neutral-500">
+            <span>Decentralized DID</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="bg-[#eeeae0]/60 hover:bg-[#eeeae0] transition-colors duration-300 rounded-2xl p-6 flex flex-col justify-between border border-[#e4ded0]">
+          <div>
+            <!-- Network Hub Icon Box -->
+            <div class="w-full h-36 bg-[#e6dfcf] rounded-xl flex items-center justify-center mb-6">
+              <svg class="w-12 h-12 text-neutral-800" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8">
+                <!-- Distributed Agent API nodes -->
+                <circle cx="32" cy="32" r="7"/>
+                <circle cx="16" cy="18" r="4"/>
+                <circle cx="48" cy="18" r="4"/>
+                <circle cx="16" cy="46" r="4"/>
+                <circle cx="48" cy="46" r="4"/>
+                <line x1="20" y1="21" x2="27" y2="28"/>
+                <line x1="44" y1="21" x2="37" y2="28"/>
+                <line x1="20" y1="43" x2="27" y2="36"/>
+                <line x1="44" y1="43" x2="37" y2="36"/>
+                <circle cx="32" cy="32" r="2" fill="currentColor"/>
+              </svg>
+            </div>
+
+            <h3 class="font-serif text-xl sm:text-2xl text-neutral-900 font-medium mb-3">
+              Agent API Infrastructure
+            </h3>
+
+            <p class="text-xs sm:text-[13px] text-neutral-600 leading-relaxed">
+              Batteries AI model access, privacy-first integration, native crypto payments, intelligent routing, and resource rationing.
+            </p>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-[#e2dbcd] flex items-center justify-between text-xs text-neutral-500">
+            <span>High-Throughput Gateway</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="bg-[#eeeae0]/60 hover:bg-[#eeeae0] transition-colors duration-300 rounded-2xl p-6 flex flex-col justify-between border border-[#e4ded0]">
+          <div>
+            <!-- Developer Docs Icon Box -->
+            <div class="w-full h-36 bg-[#e6dfcf] rounded-xl flex items-center justify-center mb-6">
+              <svg class="w-12 h-12 text-neutral-800" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8">
+                <!-- Book with code symbol -->
+                <path d="M18 14H40C44 14 46 16 46 20V50C46 50 44 48 38 48H18V14Z"/>
+                <path d="M18 14H16C13 14 11 16 11 19V47C11 50 13 52 16 52H38"/>
+                <path d="M26 27L23 31L26 35"/>
+                <path d="M34 27L37 31L34 35"/>
+                <line x1="31" y1="26" x2="29" y2="36"/>
+              </svg>
+            </div>
+
+            <h3 class="font-serif text-xl sm:text-2xl text-neutral-900 font-medium mb-3">
+              Developer Docs
+            </h3>
+
+            <p class="text-xs sm:text-[13px] text-neutral-600 leading-relaxed">
+              Discover how to quickly embed Benc in the core of your AI Agents, and explore comprehensive guides for developers.
+            </p>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-[#e2dbcd] flex items-center justify-between text-xs text-neutral-500">
+            <span>Explore SDKs</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Section: AGI as a Human (Interactive 3D Sphere & Floating Card) -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative overflow-hidden">
+    
+    <!-- Top Subhead & Statement -->
+    <div class="text-center max-w-2xl mx-auto mb-6">
+      <p class="text-xs sm:text-sm text-neutral-600 tracking-wide">
+        Benc connects the Agents, assets for Prospect, and fuel for the Economy.
+      </p>
+    </div>
+
+    <!-- Central Stage: Canvas Globe + Framed Big Typography -->
+    <div class="relative min-h-[460px] sm:min-h-[560px] flex items-center justify-center my-6">
+      
+      <!-- Big Typography: "AGI as" on the left -->
+      <div class="absolute left-2 sm:left-12 lg:left-24 top-1/2 -translate-y-1/2 z-10 pointer-events-none select-none">
+        <h2 class="font-serif text-4xl sm:text-6xl lg:text-7xl text-neutral-800 tracking-tight font-normal">
+          AGI as
+        </h2>
+      </div>
+
+      <!-- Canvas Interactive Dotted Globe -->
+      <div class="relative w-[340px] h-[340px] sm:w-[460px] sm:h-[460px] flex items-center justify-center">
+        <!-- Background subtle glow -->
+        <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-neutral-100 to-amber-50/50 blur-2xl -z-10 opacity-70"></div>
+        
+        <!-- Rotating Canvas -->
+        <canvas id="globeCanvas" width="460" height="460" class="cursor-grab active:cursor-grabbing w-full h-full"></canvas>
+        
+        <!-- Floating Benc Butterfly Emblem in Center -->
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <svg class="w-14 h-14 sm:w-20 sm:h-20 text-neutral-300/80 drop-shadow-sm" viewBox="0 0 100 100" fill="none" stroke="currentColor">
+            <path d="M50 50 C38 30 18 24 16 38 C14 50 28 58 50 50 Z" stroke-width="3"/>
+            <path d="M50 50 C62 30 82 24 84 38 C86 50 72 58 50 50 Z" stroke-width="3"/>
+            <path d="M50 50 C38 70 18 76 16 62 C14 50 28 42 50 50 Z" stroke-width="3"/>
+            <path d="M50 50 C62 70 82 76 84 62 C86 50 72 42 50 50 Z" stroke-width="3"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Big Typography: "a Human" on the right -->
+      <div class="absolute right-2 sm:right-12 lg:right-24 bottom-16 sm:bottom-24 lg:bottom-28 z-10 pointer-events-none select-none">
+        <h2 class="font-serif text-4xl sm:text-6xl lg:text-7xl text-neutral-800 tracking-tight font-normal">
+          a Human
+        </h2>
+      </div>
+
+    </div>
+
+    <!-- Floating Bottom-Left Card with Indicators -->
+    <div class="max-w-md mx-auto sm:ml-8 lg:ml-16 mt-4 relative z-20">
+      
+      <!-- Tiny Carousel Dots -->
+      <div class="flex items-center gap-1.5 mb-3">
+        <span class="w-2 h-2 rounded-full bg-neutral-900 inline-block"></span>
+        <span class="w-2 h-2 rounded-full bg-neutral-300 inline-block cursor-pointer hover:bg-neutral-500 transition"></span>
+        <span class="w-2 h-2 rounded-full bg-neutral-300 inline-block cursor-pointer hover:bg-neutral-500 transition"></span>
+      </div>
+
+      <!-- Card Box with Key Icon & Connectivity Tag -->
+      <div class="bg-neutral-50/90 border border-neutral-200/80 rounded-2xl p-5 shadow-sm flex items-start gap-4">
+        <!-- Key Icon Box -->
+        <div class="w-12 h-12 bg-neutral-200/70 rounded-xl flex items-center justify-center shrink-0 text-neutral-700">
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="8" cy="15" r="4"/>
+            <path d="M10.8 12.2L19 4"/>
+            <path d="M15 8l2 2"/>
+            <path d="M18 5l2 2"/>
+          </svg>
+        </div>
+
+        <!-- Card Text -->
+        <div>
+          <span class="inline-block bg-black text-white text-[9px] font-bold tracking-widest px-2 py-0.5 rounded uppercase mb-2">
+            CONNECTIVITY / NETWORK
+          </span>
+          <p class="text-xs sm:text-[13px] text-neutral-700 leading-relaxed font-normal">
+            Sovereign payments and proprietary identities. Providing a frictionless, universally available crypto highway for AGI to transact securely and scale the world's economy without borders.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Global Dotted Map Section with Connected Data Arcs -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative">
+    
+    <div class="relative w-full rounded-3xl border border-neutral-200/70 bg-gradient-to-b from-neutral-50/50 via-white to-neutral-50/30 p-6 sm:p-12 overflow-hidden shadow-[0_2px_20px_rgba(0,0,0,0.02)]">
+      
+      <!-- Dotted Canvas for World Map & Flight Path Arcs -->
+      <div class="relative w-full h-[400px] sm:h-[520px] flex items-center justify-center">
+        <canvas id="mapCanvas" class="w-full h-full block"></canvas>
+
+        <!-- Center Marker & Advent of AGI Tag -->
+        <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none select-none">
+          <!-- Pin Marker Box -->
+          <div class="relative flex flex-col items-center">
+            
+            <!-- Black B Emblem -->
+            <div class="w-9 h-9 bg-black rounded-lg shadow-lg flex items-center justify-center text-white font-serif text-lg font-bold border border-neutral-700 mb-2 transform hover:scale-110 transition pointer-events-auto cursor-pointer">
+              B
+            </div>
+
+            <!-- Vertical Connection Line down to epicenter -->
+            <div class="w-[1.5px] h-10 bg-neutral-800"></div>
+            <div class="w-2.5 h-2.5 rounded-full bg-black ring-4 ring-neutral-300"></div>
+
+            <!-- Typography Badge -->
+            <div class="mt-4 text-center">
+              <h3 class="font-serif text-xl sm:text-2xl text-neutral-900 tracking-tight font-medium">
+                Accelerating the<br>Advent of AGI
+              </h3>
+              <p class="font-serif italic text-xs text-neutral-500 mt-1">
+                For Human
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Global Stats Bar -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 pt-8 border-t border-neutral-200/70 text-center">
+        <div>
+          <div class="font-serif text-2xl sm:text-3xl font-semibold text-neutral-900">42,800+</div>
+          <div class="text-[11px] text-neutral-500 uppercase tracking-wider mt-1">Active Agents</div>
+        </div>
+        <div>
+          <div class="font-serif text-2xl sm:text-3xl font-semibold text-neutral-900">&lt; 14ms</div>
+          <div class="text-[11px] text-neutral-500 uppercase tracking-wider mt-1">Cross-Agent Latency</div>
+        </div>
+        <div>
+          <div class="font-serif text-2xl sm:text-3xl font-semibold text-neutral-900">$180M+</div>
+          <div class="text-[11px] text-neutral-500 uppercase tracking-wider mt-1">Autonomous Volume</div>
+        </div>
+        <div>
+          <div class="font-serif text-2xl sm:text-3xl font-semibold text-neutral-900">99.99%</div>
+          <div class="text-[11px] text-neutral-500 uppercase tracking-wider mt-1">Protocol Uptime</div>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Footer Section -->
+  <footer class="bg-[#0f0f11] text-neutral-400 text-xs py-16 border-t border-neutral-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-8 pb-12 border-b border-neutral-800/80">
+        
+        <!-- Brand Column -->
+        <div class="col-span-2 space-y-4">
+          <div class="flex items-center gap-2">
+            <svg class="w-7 h-7 text-white" viewBox="0 0 100 100" fill="none" stroke="currentColor">
+              <path d="M50 50 C38 30 18 24 16 38 C14 50 28 58 50 50 Z" stroke-width="5"/>
+              <path d="M50 50 C62 30 82 24 84 38 C86 50 72 58 50 50 Z" stroke-width="5"/>
+              <path d="M50 50 C38 70 18 76 16 62 C14 50 28 42 50 50 Z" stroke-width="5"/>
+              <path d="M50 50 C62 70 82 76 84 62 C86 50 72 42 50 50 Z" stroke-width="5"/>
+            </svg>
+            <span class="font-serif text-2xl text-white font-medium">Benc.AI</span>
+          </div>
+          <p class="text-neutral-400 text-xs leading-relaxed max-w-sm">
+            Empowering the autonomous economic layer for next-generation artificial general intelligence and machine-to-machine economies.
+          </p>
+          <div class="flex items-center gap-3 pt-2 text-neutral-400">
+            <a href="#" class="p-2 rounded-lg bg-neutral-900 hover:text-white hover:bg-neutral-800 transition"><i data-lucide="twitter" class="w-4 h-4"></i></a>
+            <a href="#" class="p-2 rounded-lg bg-neutral-900 hover:text-white hover:bg-neutral-800 transition"><i data-lucide="github" class="w-4 h-4"></i></a>
+            <a href="#" class="p-2 rounded-lg bg-neutral-900 hover:text-white hover:bg-neutral-800 transition"><i data-lucide="message-square" class="w-4 h-4"></i></a>
+            <a href="#" class="p-2 rounded-lg bg-neutral-900 hover:text-white hover:bg-neutral-800 transition"><i data-lucide="globe" class="w-4 h-4"></i></a>
+          </div>
+        </div>
+
+        <!-- Products -->
+        <div class="space-y-3">
+          <h4 class="text-white text-xs font-semibold uppercase tracking-wider">Services</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:text-white transition">Intro-AI Flash</a></li>
+            <li><a href="#" class="hover:text-white transition">DeepSeek Gateway</a></li>
+            <li><a href="#" class="hover:text-white transition">GLM Inference API</a></li>
+            <li><a href="#" class="hover:text-white transition">Qwen Coder Hub</a></li>
+            <li><a href="#" class="hover:text-white transition">Private Multi-agent Routing</a></li>
+          </ul>
+        </div>
+
+        <!-- Protocol & Tools -->
+        <div class="space-y-3">
+          <h4 class="text-white text-xs font-semibold uppercase tracking-wider">Protocol</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:text-white transition">Agent ID Standard</a></li>
+            <li><a href="#" class="hover:text-white transition">Autonomous Settlement</a></li>
+            <li><a href="#" class="hover:text-white transition">Clis.ai CLI</a></li>
+            <li><a href="#" class="hover:text-white transition">Dbcode Storage</a></li>
+            <li><a href="#" class="hover:text-white transition">Audit & ZK Verification</a></li>
+          </ul>
+        </div>
+
+        <!-- Developers & Legal -->
+        <div class="space-y-3">
+          <h4 class="text-white text-xs font-semibold uppercase tracking-wider">Company</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:text-white transition">Developer Docs</a></li>
+            <li><a href="#" class="hover:text-white transition">Research Papers</a></li>
+            <li><a href="#" class="hover:text-white transition">Terms of Service</a></li>
+            <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
+            <li><a href="#" class="hover:text-white transition">Security Bounty</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Copyright Notice -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-neutral-500 text-[11px] gap-4">
+        <p>© 2026 Benc.AI Foundation. All rights reserved.</p>
+        <div class="flex items-center gap-6">
+          <span class="inline-flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            All Agent Nodes Operational
+          </span>
+          <a href="#" class="hover:text-neutral-400">Status</a>
+          <a href="#" class="hover:text-neutral-400">System Metrics</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Try Out / Sign In Modal -->
+  <div id="tryOutModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl border border-neutral-100 relative transform transition-all scale-95 opacity-0 duration-200" id="tryOutModalContent">
+      <button onclick="closeTryOutModal()" class="absolute right-5 top-5 p-2 rounded-full hover:bg-neutral-100 text-neutral-500 hover:text-black">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+
+      <div class="text-center mb-6">
+        <div class="w-12 h-12 mx-auto rounded-2xl bg-neutral-900 text-white flex items-center justify-center mb-3">
+          <svg class="w-6 h-6" viewBox="0 0 100 100" fill="none" stroke="currentColor">
+            <path d="M50 50 C38 30 18 24 16 38 C14 50 28 58 50 50 Z" stroke-width="6"/>
+            <path d="M50 50 C62 30 82 24 84 38 C86 50 72 58 50 50 Z" stroke-width="6"/>
+            <path d="M50 50 C38 70 18 76 16 62 C14 50 28 42 50 50 Z" stroke-width="6"/>
+            <path d="M50 50 C62 70 82 76 84 62 C86 50 72 42 50 50 Z" stroke-width="6"/>
+          </svg>
+        </div>
+        <h3 class="font-serif text-2xl text-neutral-900 font-medium">Access Benc.AI Console</h3>
+        <p class="text-xs text-neutral-500 mt-1">Start deploying autonomous financial agents in seconds.</p>
+      </div>
+
+      <div class="space-y-3">
+        <button onclick="simulateConnect('Ethereum Wallet')" class="w-full flex items-center justify-center gap-3 py-3 px-4 rounded-xl border border-neutral-200 hover:border-black text-sm font-medium text-neutral-800 transition">
+          <i data-lucide="wallet" class="w-4 h-4 text-neutral-700"></i>
+          Connect Web3 Wallet
+        </button>
+        <button onclick="simulateConnect('Developer API Key')" class="w-full flex items-center justify-center gap-3 py-3 px-4 rounded-xl bg-black text-white hover:bg-neutral-800 text-sm font-medium transition">
+          <i data-lucide="key" class="w-4 h-4"></i>
+          Generate Instant API Key
+        </button>
+      </div>
+
+      <div class="mt-6 text-center">
+        <p class="text-[11px] text-neutral-400">By continuing, you agree to Benc Protocol RFC-402 Agreement.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Response Toast -->
+  <div id="toastNotification" class="fixed bottom-6 right-6 z-50 bg-neutral-900 text-white text-xs font-medium py-3 px-5 rounded-2xl shadow-xl flex items-center gap-3 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+    <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
+    <span id="toastMessage">Success</span>
+  </div>
+
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // ==========================================
+    // 1. 3D Dotted Globe Particle Animation
+    // ==========================================
+    const globeCanvas = document.getElementById('globeCanvas');
+    const gCtx = globeCanvas.getContext('2d');
+
+    // Sphere parameters
+    let globeRadius = 140;
+    const numPoints = 850;
+    const globePoints = [];
+    let angleX = 0.2;
+    let angleY = 0;
+    let isDragging = false;
+    let prevMouseX = 0;
+    let prevMouseY = 0;
+
+    // Generate uniformly distributed points on a sphere (Fibonacci sphere algorithm)
+    const phi = Math.PI * (3 - Math.sqrt(5)); // Golden ratio angle
+    for (let i = 0; i < numPoints; i++) {
+      const y = 1 - (i / (numPoints - 1)) * 2; // y goes from 1 to -1
+      const radiusAtY = Math.sqrt(1 - y * y);
+      const theta = phi * i;
+
+      const x = Math.cos(theta) * radiusAtY;
+      const z = Math.sin(theta) * radiusAtY;
+
+      globePoints.push({ x, y, z });
+    }
+
+    // Resize canvas crisply for high-DPI displays
+    function resizeGlobeCanvas() {
+      const rect = globeCanvas.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      globeCanvas.width = rect.width * dpr;
+      globeCanvas.height = rect.height * dpr;
+      gCtx.scale(dpr, dpr);
+      globeRadius = Math.min(rect.width, rect.height) * 0.38;
+    }
+    window.addEventListener('resize', resizeGlobeCanvas);
+    resizeGlobeCanvas();
+
+    // Mouse drag interaction for the 3D globe
+    globeCanvas.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      prevMouseX = e.clientX;
+      prevMouseY = e.clientY;
+    });
+
+    window.addEventListener('mouseup', () => { isDragging = false; });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      const deltaX = e.clientX - prevMouseX;
+      const deltaY = e.clientY - prevMouseY;
+      angleY += deltaX * 0.006;
+      angleX += deltaY * 0.006;
+      prevMouseX = e.clientX;
+      prevMouseY = e.clientY;
+    });
+
+    // Touch support for mobile devices
+    globeCanvas.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 1) {
+        isDragging = true;
+        prevMouseX = e.touches[0].clientX;
+        prevMouseY = e.touches[0].clientY;
+      }
+    }, { passive: true });
+
+    window.addEventListener('touchend', () => { isDragging = false; });
+
+    window.addEventListener('touchmove', (e) => {
+      if (!isDragging || e.touches.length !== 1) return;
+      const deltaX = e.touches[0].clientX - prevMouseX;
+      const deltaY = e.touches[0].clientY - prevMouseY;
+      angleY += deltaX * 0.007;
+      angleX += deltaY * 0.007;
+      prevMouseX = e.touches[0].clientX;
+      prevMouseY = e.touches[0].clientY;
+    }, { passive: true });
+
+    function renderGlobe() {
+      const rect = globeCanvas.getBoundingClientRect();
+      const width = rect.width;
+      const height = rect.height;
+      const cx = width / 2;
+      const cy = height / 2;
+
+      gCtx.clearRect(0, 0, width, height);
+
+      // Automatic gentle rotation if not dragging
+      if (!isDragging) {
+        angleY += 0.004;
+      }
+
+      const cosX = Math.cos(angleX);
+      const sinX = Math.sin(angleX);
+      const cosY = Math.cos(angleY);
+      const sinY = Math.sin(angleY);
+
+      // Project each point
+      const projected = [];
+      for (let i = 0; i < globePoints.length; i++) {
+        const pt = globePoints[i];
+
+        // Rotate around Y axis
+        let x1 = pt.x * cosY + pt.z * sinY;
+        let y1 = pt.y;
+        let z1 = -pt.x * sinY + pt.z * cosY;
+
+        // Rotate around X axis
+        let x2 = x1;
+        let y2 = y1 * cosX - z1 * sinX;
+        let z2 = y1 * sinX + z1 * cosX;
+
+        projected.push({
+          x: cx + x2 * globeRadius,
+          y: cy + y2 * globeRadius,
+          z: z2,
+          origIdx: i
+        });
+      }
+
+      // Sort by depth (painter's algorithm)
+      projected.sort((a, b) => a.z - b.z);
+
+      // Render dots
+      for (let i = 0; i < projected.length; i++) {
+        const p = projected[i];
+        // Normalize depth z from -1 to 1
+        const depth = (p.z + 1) / 2; // 0 (back) to 1 (front)
+        
+        // Front dots are darker and slightly bigger; back dots are faint
+        const alpha = 0.12 + depth * 0.65;
+        const radius = 0.8 + depth * 1.5;
+
+        gCtx.beginPath();
+        gCtx.arc(p.x, p.y, radius, 0, Math.PI * 2);
+        gCtx.fillStyle = `rgba(30, 30, 30, ${alpha})`;
+        gCtx.fill();
+      }
+
+      requestAnimationFrame(renderGlobe);
+    }
+    requestAnimationFrame(renderGlobe);
+
+    // ==========================================
+    // 2. Global Dotted Map with Animated Arcs
+    // ==========================================
+    const mapCanvas = document.getElementById('mapCanvas');
+    const mCtx = mapCanvas.getContext('2d');
+
+    // Global tech hubs [normX, normY, label]
+    const globalNodes = [
+      { x: 0.19, y: 0.36, label: "San Francisco" },
+      { x: 0.28, y: 0.34, label: "New York" },
+      { x: 0.49, y: 0.28, label: "London" },
+      { x: 0.53, y: 0.32, label: "Frankfurt" },
+      { x: 0.50, y: 0.55, label: "Advent Center" }, // Center marker
+      { x: 0.82, y: 0.38, label: "Tokyo" },
+      { x: 0.77, y: 0.58, label: "Singapore" },
+      { x: 0.86, y: 0.76, label: "Sydney" }
+    ];
+
+    // Arc links between nodes
+    const arcLinks = [
+      { from: 0, to: 1 },
+      { from: 1, to: 2 },
+      { from: 2, to: 3 },
+      { from: 3, to: 4 },
+      { from: 4, to: 6 },
+      { from: 6, to: 5 },
+      { from: 5, to: 7 }
+    ];
+
+    let arcProgress = 0;
+
+    function resizeMapCanvas() {
+      const rect = mapCanvas.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      mapCanvas.width = rect.width * dpr;
+      mapCanvas.height = rect.height * dpr;
+      mCtx.scale(dpr, dpr);
+    }
+    window.addEventListener('resize', resizeMapCanvas);
+    resizeMapCanvas();
+
+    // Approximate continent dot generator for lightweight vector styling
+    function isContinent(nx, ny) {
+      // North America
+      if (nx >= 0.12 && nx <= 0.32 && ny >= 0.18 && ny <= 0.45) return true;
+      // South America
+      if (nx >= 0.26 && nx <= 0.38 && ny >= 0.50 && ny <= 0.82) return true;
+      // Europe
+      if (nx >= 0.46 && nx <= 0.58 && ny >= 0.18 && ny <= 0.38) return true;
+      // Africa
+      if (nx >= 0.46 && nx <= 0.62 && ny >= 0.38 && ny <= 0.72) return true;
+      // Asia
+      if (nx >= 0.58 && nx <= 0.86 && ny >= 0.18 && ny <= 0.55) return true;
+      // Australia
+      if (nx >= 0.78 && nx <= 0.90 && ny >= 0.65 && ny <= 0.85) return true;
+      return false;
+    }
+
+    function renderMap() {
+      const rect = mapCanvas.getBoundingClientRect();
+      const width = rect.width;
+      const height = rect.height;
+
+      mCtx.clearRect(0, 0, width, height);
+
+      // 1. Draw Dotted World Matrix
+      const cols = 80;
+      const rows = 40;
+      const stepX = width / cols;
+      const stepY = height / rows;
+
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          const nx = c / cols;
+          const ny = r / rows;
+
+          if (isContinent(nx, ny)) {
+            const x = c * stepX + stepX / 2;
+            const y = r * stepY + stepY / 2;
+
+            mCtx.beginPath();
+            mCtx.arc(x, y, 1.2, 0, Math.PI * 2);
+            mCtx.fillStyle = 'rgba(160, 160, 165, 0.4)';
+            mCtx.fill();
+          }
+        }
+      }
+
+      // 2. Draw Curved Data Arcs
+      arcProgress = (arcProgress + 0.008) % 1;
+
+      arcLinks.forEach(link => {
+        const start = globalNodes[link.from];
+        const end = globalNodes[link.to];
+
+        const x1 = start.x * width;
+        const y1 = start.y * height;
+        const x2 = end.x * width;
+        const y2 = end.y * height;
+
+        // Quadratic Bezier Control Point (arching upwards)
+        const cx = (x1 + x2) / 2;
+        const cy = Math.min(y1, y2) - 45;
+
+        // Draw faint base curve
+        mCtx.beginPath();
+        mCtx.moveTo(x1, y1);
+        mCtx.quadraticCurveTo(cx, cy, x2, y2);
+        mCtx.strokeStyle = 'rgba(50, 50, 50, 0.25)';
+        mCtx.lineWidth = 1;
+        mCtx.stroke();
+
+        // Draw animated traveling packet along the curve
+        const t = (arcProgress + (link.from * 0.15)) % 1;
+        // B(t) = (1-t)^2*P0 + 2(1-t)t*P1 + t^2*P2
+        const px = Math.pow(1 - t, 2) * x1 + 2 * (1 - t) * t * cx + Math.pow(t, 2) * x2;
+        const py = Math.pow(1 - t, 2) * y1 + 2 * (1 - t) * t * cy + Math.pow(t, 2) * y2;
+
+        mCtx.beginPath();
+        mCtx.arc(px, py, 2.5, 0, Math.PI * 2);
+        mCtx.fillStyle = '#111111';
+        mCtx.fill();
+      });
+
+      // 3. Draw Nodes
+      globalNodes.forEach(node => {
+        const nx = node.x * width;
+        const ny = node.y * height;
+
+        mCtx.beginPath();
+        mCtx.arc(nx, ny, 2.5, 0, Math.PI * 2);
+        mCtx.fillStyle = '#111111';
+        mCtx.fill();
+
+        mCtx.beginPath();
+        mCtx.arc(nx, ny, 6, 0, Math.PI * 2);
+        mCtx.strokeStyle = 'rgba(0,0,0,0.15)';
+        mCtx.lineWidth = 1;
+        mCtx.stroke();
+      });
+
+      requestAnimationFrame(renderMap);
+    }
+    requestAnimationFrame(renderMap);
+
+    // ==========================================
+    // 3. User Interaction Handlers & Modals
+    // ==========================================
+
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Try Out Modal Controls
+    const tryOutModal = document.getElementById('tryOutModal');
+    const tryOutModalContent = document.getElementById('tryOutModalContent');
+
+    function openTryOutModal() {
+      tryOutModal.classList.remove('hidden');
+      tryOutModal.classList.add('flex');
+      setTimeout(() => {
+        tryOutModalContent.classList.remove('scale-95', 'opacity-0');
+        tryOutModalContent.classList.add('scale-100', 'opacity-100');
+      }, 10);
+    }
+
+    function closeTryOutModal() {
+      tryOutModalContent.classList.remove('scale-100', 'opacity-100');
+      tryOutModalContent.classList.add('scale-95', 'opacity-0');
+      setTimeout(() => {
+        tryOutModal.classList.add('hidden');
+        tryOutModal.classList.remove('flex');
+      }, 200);
+    }
+
+    // Modal background click to close
+    tryOutModal.addEventListener('click', (e) => {
+      if (e.target === tryOutModal) {
+        closeTryOutModal();
+      }
+    });
+
+    // Toast message function (safe alternative to alert)
+    function showToast(msg) {
+      const toast = document.getElementById('toastNotification');
+      const toastMsg = document.getElementById('toastMessage');
+      toastMsg.innerText = msg;
+
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-24', 'opacity-0');
+      }, 3200);
+    }
+
+    function simulateConnect(provider) {
+      closeTryOutModal();
+      showToast(`Connected successfully via ${provider}`);
+    }
+
+    function toggleInfoModal(title) {
+      showToast(`Navigating to ${title}...`);
+    }
+
+    // Search query interaction
+    function setQuery(query) {
+      const input = document.getElementById('heroSearchInput');
+      input.value = query;
+      input.focus();
+    }
+
+    function handleSearch(e) {
+      e.preventDefault();
+      const input = document.getElementById('heroSearchInput');
+      const val = input.value.trim();
+      if (!val) {
+        showToast("Please enter an agent query or search term");
+        return;
+      }
+      showToast(`Searching Benc Agent Index for: "${val}"`);
+    }
+  </script>
+</body>
+</html>
